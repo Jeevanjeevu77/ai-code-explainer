@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🤖 AI Code Explainer
 
 > **Paste any code → Get a beginner-friendly explanation instantly!**
@@ -294,3 +295,6 @@ AI_MODEL=llama3.2
 - [React Documentation](https://react.dev/)
 - [OpenAI API Reference](https://platform.openai.com/docs)
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
+=======
+# ai-code-explainer
+>>>>>>> cadd62b0325bf31593df9691d8b63546603050d3
