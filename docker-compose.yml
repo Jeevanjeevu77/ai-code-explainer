@@ -1,0 +1,47 @@
+# docker-compose.yml
+# ====================
+# Run the entire app with one command: docker-compose up
+#
+# This starts both:
+# - Backend (FastAPI) on port 8000
+# - Frontend (React via Vite) on port 3000
+
+version: '3.8'
+
+services:
+  # ─── Backend: FastAPI Python server ───
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"      # Expose backend on localhost:8000
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      - AI_MODEL=${AI_MODEL:-gpt-4o-mini}
+    volumes:
+      - ./backend:/app   # Mount code for live reloading during development
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ─── Frontend: React + Vite dev server ───
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"      # Expose frontend on localhost:3000
+    depends_on:
+      - backend           # Wait for backend to be ready
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules  # Don't overwrite container's node_modules
+    environment:
+      - VITE_API_URL=http://backend:8000
+    restart: unless-stopped

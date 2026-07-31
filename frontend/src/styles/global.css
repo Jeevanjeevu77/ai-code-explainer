@@ -1,0 +1,155 @@
+/* =====================================================
+   AI Code Explainer - Global Styles
+   Theme: Dark terminal aesthetic with electric accents
+   Fonts: Space Mono (code) + DM Sans (body)
+   ===================================================== */
+
+/* CSS Variables - our color palette and spacing system */
+:root {
+  /* Core colors */
+  --bg-primary: #0a0e17;
+  --bg-secondary: #0f1624;
+  --bg-card: #131c2e;
+  --bg-elevated: #1a2540;
+  
+  /* Accent colors */
+  --accent-primary: #00e5ff;    /* Electric cyan */
+  --accent-secondary: #7c3aed;  /* Deep violet */
+  --accent-success: #00d97e;    /* Matrix green */
+  --accent-warn: #ffb020;       /* Amber */
+  --accent-danger: #ff4d6d;     /* Error red */
+  
+  /* Text colors */
+  --text-primary: #e8f0fe;
+  --text-secondary: #8896b3;
+  --text-muted: #4a5568;
+  --text-code: #a8d8b9;
+  
+  /* Border colors */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-active: rgba(0, 229, 255, 0.3);
+  
+  /* Typography */
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 20px rgba(0, 229, 255, 0.1);
+  --shadow-glow-strong: 0 0 40px rgba(0, 229, 255, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
+
+/* Reset & base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  /* Subtle grid pattern background */
+  background-image: 
+    linear-gradient(rgba(0, 229, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+/* Selection color */
+::selection {
+  background: rgba(0, 229, 255, 0.2);
+  color: var(--text-primary);
+}
+
+/* Utility classes */
+.font-mono { font-family: var(--font-mono); }
+.text-accent { color: var(--accent-primary); }
+.text-muted { color: var(--text-secondary); }
+.text-success { color: var(--accent-success); }
+.text-warn { color: var(--accent-warn); }
+.text-danger { color: var(--accent-danger); }
+
+/* Code block base style */
+pre, code {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(0, 229, 255, 0.3); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-fade-in { animation: fadeIn 0.3s ease forwards; }
+.animate-spin { animation: spin 1s linear infinite; }
